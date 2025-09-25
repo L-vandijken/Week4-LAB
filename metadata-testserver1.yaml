@@ -1,2 +1,2 @@
 #cloud-config
-local-hostname: webserver-1
+local-hostname: testserver1
