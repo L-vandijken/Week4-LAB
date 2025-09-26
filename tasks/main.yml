@@ -1,22 +1,10 @@
-- name: Installeer nginx
+- name: Installeer MariaDB
   apt:
-    name: nginx
+    name: mariadb-server
     state: present
     update_cache: yes
 
-- name: Zet poort {{ nginx_port }} open
-  ufw:
-    rule: allow
-    port: "{{ nginx_port }}"
-    proto: tcp
-
-- name: Genereer index.html
-  template:
-    src: index.html.j2
-    dest: /var/www/html/index.html
-
-- name: Start nginx
-  service:
-    name: nginx
-    state: started
-    enabled: yes
+- name: Maak database aan
+  mysql_db:
+    name: "{{ db_name }}"
+    state: present
