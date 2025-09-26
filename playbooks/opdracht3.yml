@@ -1,0 +1,29 @@
+---
+- name: opdracht 3
+  hosts: demo
+  become: yes
+  tasks:
+
+    - name: Alleen uitvoeren op Ubuntu
+      debug:
+        msg: "Deze taak draait alleen op Ubuntu"
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Alleen uitvoeren op Red Hat
+      debug:
+        msg: "Deze taak draait alleen op Red Hat"
+      when: ansible_distribution == "RedHat"
+
+    - name: Controleer of /etc/hosts bestaat
+      stat:
+        path: /etc/hosts
+      register: hosts_file
+
+    - name: Faal als /etc/hosts niet bestaat
+      debug:
+        msg: "/etc/hosts bestaat"
+      failed_when: not hosts_file.stat.exists
+
+    - name: Voer echo hallo uit zonder changed status
+      command: echo hallo
+      changed_when: false

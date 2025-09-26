@@ -1,5 +1,5 @@
 ---
-- name: Variabelen gebruiken in een playbook
+- name: Opdracht 2
   hosts: demo
   become: yes
 
