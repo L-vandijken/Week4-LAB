@@ -1,0 +1,12 @@
+---
+- name: Productieomgeving uitrollen
+  hosts: web
+  become: yes
+  roles:
+    - role_web
+
+- name: Database uitrollen
+  hosts: db
+  become: yes
+  roles:
+    - L-vandijken.role_db
