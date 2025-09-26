@@ -1,0 +1,4 @@
+- name: Herstart nginx
+  service:
+    name: nginx
+    state: restarted

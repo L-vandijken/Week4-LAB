@@ -4,7 +4,7 @@
     state: present
     update_cache: yes
 
-- name: Zet poort {{ nginx_port }} open
+- name: Zet poort {{ nginx_port }} open via UFW
   ufw:
     rule: allow
     port: "{{ nginx_port }}"
@@ -14,6 +14,12 @@
   template:
     src: index.html.j2
     dest: /var/www/html/index.html
+
+- name: Genereer nginx-config voor poort {{ nginx_port }}
+  template:
+    src: nginx.conf.j2
+    dest: /etc/nginx/sites-available/default
+  notify: Herstart nginx
 
 - name: Start nginx
   service:
