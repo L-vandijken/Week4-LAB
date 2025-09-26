@@ -4,6 +4,12 @@
     state: present
     update_cache: yes
 
+- name: Sta SSH toe
+  ufw:
+    rule: allow
+    port: 22
+    proto: tcp
+
 - name: Zet poort 8080 open
   ufw:
     rule: allow
