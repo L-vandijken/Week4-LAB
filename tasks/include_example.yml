@@ -1,0 +1,4 @@
+- name: Ingeladen taak
+  debug:
+    msg: "Deze taak is geladen via include_tasks"
+

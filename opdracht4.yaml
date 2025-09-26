@@ -1,0 +1,14 @@
+---
+- name: Demo import en include
+  hosts: demo
+  become: yes
+
+  tasks:
+    - name: Taken via import_tasks
+      import_tasks: tasks/import_example.yml
+
+    - name: Taken via include_tasks
+      include_tasks: tasks/include_example.yml
+
+  roles:
+    - role_firewall
