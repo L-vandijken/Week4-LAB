@@ -1,0 +1,3 @@
+192.168.1.107 webserver-1
+192.168.1.109 databaseserver
+192.168.1.108 webserver-2
