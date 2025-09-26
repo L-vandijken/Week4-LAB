@@ -1,1 +1,34 @@
+---
+- name: Variabelen gebruiken in een playbook
+  hosts: demo
+  become: yes
+
+  tasks:
+    - name: Motd_message in /etc/motd
+      copy:
+        content: "{{ motd_message }}"
+        dest: /etc/motd
+
+    - name: Maak /etc/app.conf met inventory
+      copy:
+        content: "Application = {{ hostvars[inventory_hostname]['app_name'] }}"
+        dest: /etc/app.conf
+
+    - name: Registreer kernel_version
+      command: uname -r
+      register: kernel_version
+
+    - name: Kernel_version.stdout naar /tmp/kernel.txt
+      copy:
+        content: "{{ kernel_version.stdout }}"
+        dest: /tmp/kernel.txt
+
+    - name: Facts om distributienaam op te slaan
+      setup:
+      register: system_facts
+
+    - name: Ansible_distribution naar /tmp/facts.txt
+      copy:
+        content: "{{ system_facts.ansible_facts.ansible_distribution }}"
+        dest: /tmp/facts.txt
 
