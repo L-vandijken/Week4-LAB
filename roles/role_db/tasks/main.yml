@@ -1,0 +1,10 @@
+- name: Installeer MariaDB
+  apt:
+    name: mariadb-server
+    state: present
+    update_cache: yes
+
+- name: Maak database aan
+  mysql_db:
+    name: "{{ db_name }}"
+    state: present
